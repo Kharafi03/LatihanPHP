@@ -1,0 +1,46 @@
+body {
+    background-color: whitesmoke;
+    padding: 1rem;
+}
+.form-group {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+.form-check {
+    /* overflow: hidden; */
+    padding-right: 10px;
+}
+
+/* Atur margin menjadi nol untuk menghapus jarak */
+.form-check-group .form-check {
+    margin-right: 0;
+}
+
+/* Atur margin antara label dan input */
+.form-check-label {
+    margin-right: 0;
+}
+
+
+label {
+    min-width: 120px;
+    align-items: center;
+    flex-shrink: 0; /* Mencegah label untuk dikecilkan */
+    white-space: nowrap; /* Pastikan label tidak berpindah baris */
+    vertical-align: middle !important;
+}
+table {
+    text-align: center;
+}
+thead, th {
+    background-color: black !important;
+    color: white !important;
+    vertical-align: middle !important;
+}
+
+td {
+    vertical-align: middle !important;
+}
