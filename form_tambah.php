@@ -11,10 +11,26 @@
         <div class="container-fluid">
             <div class="container mt-5">
                 <h2>Tambah Anggota Baru</h2>
-                <form id="form" action="proses_tambah.php" method="post">
+                <?php
+                    session_start();
+                    if(isset($_SESSION['message'])) {
+                        ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <?php echo $_SESSION['message']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php
+                        unset($_SESSION['message']);
+                    }
+                ?>
+                <form id="form" action="proses_tambah.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Gambar">Gambar</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar" required>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>

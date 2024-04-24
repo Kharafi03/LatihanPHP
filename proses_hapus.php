@@ -5,6 +5,14 @@
         
         // ambil np dari query string
         $no = $_GET['no'];
+        $data = mysqli_query($conn, "SELECT * FROM kelompok WHERE no = $no");
+        $row = mysqli_fetch_array($data);
+
+        // hapus gambar
+        $gambar = $row['gambar'];
+        if (file_exists("img/$gambar")) {
+            unlink("img/$gambar");
+        }
         
         // buat query hapus
         $sql = "DELETE FROM kelompok WHERE no=$no";

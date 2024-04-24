@@ -14,14 +14,26 @@
                 <h3 class="text-center">Kharafi Dwi Andika</h3>
                 <a href="form_tambah.php" class="btn btn-primary mb-3">Tambah Baru</a>
                 <?php
+                    session_start();
                     include "config.php";
                     $sql = "SELECT * FROM kelompok";
                     $result = mysqli_query($conn, $sql); 
+
+                    if(isset($_SESSION['message'])) {
+                        ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?php echo $_SESSION['message']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php
+                        unset($_SESSION['message']);
+                    }
                 ?>
                 <div class="table-responsive">
                     <table class="table table-hover table-striped table-bordered text-center">
                         <thead>
                             <th scope="No">No</th>
+                            <th scope="Gambar">Gambar</th></th>
                             <th scope="Nama">Nama</th>
                             <th scope="Alamat">Alamat</th>
                             <th scope="Jenis Kelamin">Jenis Kelamin</th>
@@ -35,6 +47,7 @@
                         while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
                                 <td><?php echo $row["no"]; ?></td>
+                                <td><img src="img/<?php echo $row["gambar"]; ?>" width="100"></td>
                                 <td><?php echo $row["nama"]; ?></td>
                                 <td><?php echo $row["alamat"]; ?></td>
                                 <td><?php echo $row["jenis_kelamin"]; ?></td>
