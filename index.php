@@ -3,15 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kelompok 5</title>
+        <title>Kelompok 5 Remangy Kharafi Dwi Andika</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="container-fluid">
             <div class="container">
-                <h1 class="text-center">List Kelompok</h1>
-                <h3 class="text-center">Kharafi Dwi Andika</h3>
+                <h1 class="text-center">Anggota Kelompok Remangy</h1>
+                <h5 class="text-center">Kharafi Dwi Andika - Latihan PHP dan MySQL</h5>
                 <a href="form_tambah.php" class="btn btn-primary mb-3">Tambah Baru</a>
                 <?php
                     session_start();
@@ -27,6 +27,14 @@
                         </div>
                         <?php
                         unset($_SESSION['message']);
+                    } elseif (isset($_SESSION['delete'])) {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?php echo $_SESSION['delete']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php
+                        unset($_SESSION['delete']);
                     }
                 ?>
                 <div class="table-responsive">
@@ -47,7 +55,7 @@
                         while ($row = mysqli_fetch_assoc($result)) { ?>
                             <tr>
                                 <td><?php echo $row["no"]; ?></td>
-                                <td><img src="img/<?php echo $row["gambar"]; ?>" width="100"></td>
+                                <td><img src="img/<?php echo $row["gambar"]; ?>" width="120" class="img-thumbnail"></td>
                                 <td><?php echo $row["nama"]; ?></td>
                                 <td><?php echo $row["alamat"]; ?></td>
                                 <td><?php echo $row["jenis_kelamin"]; ?></td>

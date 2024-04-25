@@ -4,12 +4,10 @@
     include 'config.php'; // Memastikan koneksi database sudah ada
 
     if(isset($_POST['simpan'])){
-        // $no = $_POST['no'];
+
+        // Ambil data dari formulir
         $gambar = $_FILES['gambar']['name'];
         $gambarContent = $_FILES['gambar']['tmp_name'];
-
-        // move_uploaded_file($gambarContent, 'img/'.$gambar);
-        // $gambar = $_FILES['gambar']['name'];
         $nama = $_POST['nama'];
         $alamat = $_POST['alamat'];
         $jenis_kelamin = $_POST['jenis_kelamin'];
@@ -17,14 +15,15 @@
         $kampus = $_POST['kampus'];
         $jurusan = $_POST['jurusan'];
 
+        // Ambil nomor urut terbesar dari tabel kelompok
         $sqlno = "SELECT MAX(no) FROM kelompok";
         $queryno = mysqli_query($conn, $sqlno);
         $row = mysqli_fetch_array($queryno);
         $no = $row[0] + 1;
 
-        // cek apakah user pilih gambar
+        // Cek apakah gambar sudah ada
         if(file_exists("img/$gambar")){
-            $_SESSION['message'] = $gambar.' File Gambar sudah ada';
+            $_SESSION['message'] = 'Gambar ' .$gambar.' sudah ada';
             header("Location: form_tambah.php");
         } else {
             // SQL untuk menambahkan data
@@ -33,16 +32,17 @@
 
             // apakah query update berhasil?
             if( $query ) {
-                move_uploaded_file($gambarContent, 'img/'.$gambar);
-                $_SESSION['message'] = 'Data berhasil ditambahkan';
+                move_uploaded_file($gambarContent, 'img/'.$gambar); // Upload gambar
+                $_SESSION['message'] = $nama.' berhasil ditambahkan'; // Tampilkan pesan
                 // kalau berhasil alihkan ke halaman list-daftar-anggota.php
-                header("Location: index.php"); // Redirect kembali ke form jika sukses
+                header("Location: index.php"); // Redirect kembali ke index jika sukses
             } else {
                 // kalau gagal tampilkan pesan
-                header("Location: index.php"); // Redirect kembali ke form jika sukses
+                header("Location: index.php"); // Redirect kembali ke index jika sukses
             }
         }
-    } else {
+    }
+    else {
         die("Akses dilarang...");
     }
 ?>
